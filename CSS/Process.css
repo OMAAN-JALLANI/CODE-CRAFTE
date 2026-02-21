@@ -1,0 +1,95 @@
+.bento-section {
+    padding: 80px 20px;
+    background: #ffffff;
+}
+
+.bento-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 200px);
+    gap: 15px;
+}
+
+.bento-item {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 20px;
+    padding: 30px;
+    overflow: hidden; /* Spotlight bahar na jaye */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Specific Tile Sizes */
+.item-large { grid-column: span 2; grid-row: span 2; }
+.item-wide { grid-column: span 2; }
+
+/* --- SPOTLIGHT ANIMATION --- */
+.spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        300px circle at var(--x) var(--y),
+        rgba(9, 9, 9, 0.432) 0%,
+        transparent 100%
+    );
+    opacity: 0; /* Shuru mein hide */
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Border Spotlight Effect */
+.bento-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px; /* Border thickness */
+    background: radial-gradient(
+        80px circle at var(--x) var(--y),
+        rgba(0, 0, 0, 0.4),
+        transparent
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.bento-item:hover .spotlight,
+.bento-item:hover::before {
+    opacity: 1;
+}
+
+.bento-content {
+    position: relative;
+    z-index: 3;
+}
+
+.b-num { font-weight: 800; opacity: 0.2; font-size: 1.5rem; }
+.bento-item h3 { font-family: 'Space Grotesk', sans-serif; margin: 10px 0; font-size: 1.4rem; }
+.bento-item p { font-size: 0.9rem; color: #666; line-height: 1.4; }
+
+/* --- MOBILE VIEW (Same Bento Style) --- */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr); /* Mobile par bhi tiles */
+        grid-template-rows: auto;
+    }
+    .item-large { grid-row: span 1; } /* Mobile par zyada lamba na ho */
+    .bento-item { padding: 20px; min-height: 180px; }
+}

@@ -1,0 +1,60 @@
+.reviews-section {
+    position: relative;
+    padding: 80px 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+.smoke-edge {
+    position: absolute;
+    top: 0; width: 15%; height: 100%; z-index: 10; pointer-events: none;
+}
+.left { left: 0; background: linear-gradient(to right, white, transparent); }
+.right { right: 0; background: linear-gradient(to left, white, transparent); }
+
+.review-row { display: flex; margin-bottom: 25px; }
+
+.review-card {
+    /* Laptop par 4-5 cards adjust karne ke liye width */
+    min-width: 400px; 
+    margin: 0 12px;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    transition: transform 0.3s ease;
+}
+
+/* Mouse 300px Spotlight */
+.review-card:hover { border-color: #0070f3; }
+
+.review-card p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #111;
+    font-weight: 500;
+}
+
+.review-card span {
+    display: block;
+    margin-top: 20px;
+    font-weight: 700;
+    color: #0070f3;
+    font-size: 0.85rem;
+}
+
+/* Animation */
+.marquee-track { display: flex; white-space: nowrap; animation: scroll 60s linear infinite; }
+.ltr { animation-direction: normal; }
+.rtl { animation-direction: reverse; }
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Mobile Responsive: 2 Cards view */
+@media (max-width: 768px) {
+    .review-card { min-width: 300px; padding: 25px; }
+}

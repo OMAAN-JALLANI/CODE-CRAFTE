@@ -1,0 +1,101 @@
+.services-section {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.services-container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.services-intro {
+    padding: 0 20px 40px;
+}
+
+.services-intro h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* --- CONNECTED GRID SYSTEM --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0; /* Boxes ko apas mein mila diya */
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+}
+
+.service-card {
+    position: relative;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* --- WAVE FILL EFFECT --- */
+.card-bg {
+    position: absolute;
+    bottom: -100%; /* Shuru mein neeche hoga */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+}
+
+.service-card:hover .card-bg {
+    bottom: 0; /* Neeche se upar aayega */
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transition: 0.4s;
+}
+
+.s-icon {
+    width: 32px;
+    height: 32px;
+    color: #000;
+    margin-bottom: 12px;
+    transition: 0.4s;
+}
+
+.service-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    transition: 0.4s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- HOVER TEXT/ICON COLOR --- */
+.service-card:hover .s-icon,
+.service-card:hover h3 {
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* --- MOBILE VIEW 2/2 GRID --- */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* Mobile par 2 columns */
+    }
+    .service-card {
+        height: 160px;
+    }
+    .services-intro h2 {
+        font-size: 2rem;
+    }
+}
