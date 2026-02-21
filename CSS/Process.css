@@ -1,95 +1,104 @@
-.bento-section {
-    padding: 80px 20px;
-    background: #ffffff;
+.workflow-section {
+    padding: 100px 5%;
+    background: #fff;
+    overflow: hidden;
 }
 
-.bento-container {
-    max-width: 1200px;
-    margin: 0 auto;
+.workflow-title {
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 80px;
 }
 
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 200px);
-    gap: 15px;
-}
+.workflow-title span { color: #000000; }
 
-.bento-item {
+.flow-wrapper {
     position: relative;
-    background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 20px;
-    padding: 30px;
-    overflow: hidden; /* Spotlight bahar na jaye */
+    max-width: 800px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    gap: 60px;
 }
 
-/* Specific Tile Sizes */
-.item-large { grid-column: span 2; grid-row: span 2; }
-.item-wide { grid-column: span 2; }
-
-/* --- SPOTLIGHT ANIMATION --- */
-.spotlight {
+/* SVG Line Setup */
+.flow-line {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
     height: 100%;
-    background: radial-gradient(
-        300px circle at var(--x) var(--y),
-        rgba(9, 9, 9, 0.432) 0%,
-        transparent 100%
-    );
-    opacity: 0; /* Shuru mein hide */
-    transition: opacity 0.3s;
-    pointer-events: none;
     z-index: 1;
 }
 
-/* Border Spotlight Effect */
-.bento-item::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px; /* Border thickness */
-    background: radial-gradient(
-        80px circle at var(--x) var(--y),
-        rgba(0, 0, 0, 0.4),
-        transparent
-    );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s;
+.path-bg { stroke: #eee; stroke-width: 2; fill: none; }
+.path-fill { 
+    stroke: #000000; 
+    stroke-width: 20; 
+    fill: none; 
+    stroke-dasharray: 500; 
+    stroke-dashoffset: 500; /* JS se control hoga */
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+/* Flow Step & Glass Cards */
+.flow-step {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
     z-index: 2;
 }
 
-.bento-item:hover .spotlight,
-.bento-item:hover::before {
-    opacity: 1;
+/* Alternating Cards (Left-Right) */
+.flow-step:nth-child(even) { flex-direction: row-reverse; }
+
+.step-num {
+    width: 40px; height: 40px;
+    background: #000000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.bento-content {
-    position: relative;
-    z-index: 3;
+.flow-card {
+    width: 42%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
 }
 
-.b-num { font-weight: 800; opacity: 0.2; font-size: 1.5rem; }
-.bento-item h3 { font-family: 'Space Grotesk', sans-serif; margin: 10px 0; font-size: 1.4rem; }
-.bento-item p { font-size: 0.9rem; color: #666; line-height: 1.4; }
+.flow-card:hover {
+    transform: translateY(-10px);
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
 
-/* --- MOBILE VIEW (Same Bento Style) --- */
+.flow-card i { margin-bottom: 15px; color: #ffdb00; }
+.flow-card h4 { font-family: 'Space Grotesk'; font-size: 1.4rem; margin-bottom: 10px; }
+.flow-card p { font-size: 0.95rem; line-height: 1.5; opacity: 0.8; }
+
+/* Mobile View (Stacked) */
 @media (max-width: 768px) {
-    .bento-grid {
-        grid-template-columns: repeat(2, 1fr); /* Mobile par bhi tiles */
-        grid-template-rows: auto;
+    .flow-line { left: 30px; }
+    .step-num { left: 30px; }
+    .flow-step, .flow-step:nth-child(even) { 
+        flex-direction: row; 
+        justify-content: flex-end; 
     }
-    .item-large { grid-row: span 1; } /* Mobile par zyada lamba na ho */
-    .bento-item { padding: 20px; min-height: 180px; }
+    .flow-card { width: 80%; }
 }

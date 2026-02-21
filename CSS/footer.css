@@ -1,57 +1,58 @@
 .footer-section {
     background: #000;
     color: #fff;
-    padding: 100px 0 150px; /* Niche 150px space taake Nav content na kaate */
+    padding: 100px 0 160px;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Zaroori: taake marquee bahar na nikalay */
 }
 
-/* --- SLANTED MARQUEES --- */
-.marquee-wrapper {
+/* --- THE PREMIUM SLANTED MARQUEE --- */
+.footer-bg-decoration {
     position: absolute;
-    top: 50px;
-    width: 120%;
-    left: -10%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
+    opacity: 0.1; /* Halka rakha hai taake content nazar aaye */
     pointer-events: none;
-    opacity: 0.15;
 }
 
 .marquee {
     display: flex;
     overflow: hidden;
-    padding: 15px 0;
-    background: transparent;
+    white-space: nowrap;
+    padding: 20px 0;
 }
 
-.slanted-1 { transform: rotate(-5deg); border-bottom: 1px solid #fff; }
-.slanted-2 { transform: rotate(3deg); margin-top: 20px; border-top: 1px solid #fff; }
+.slanted-up { transform: rotate(-6deg) translateY(50px) scale(1.2); }
+.slanted-down { transform: rotate(4deg) translateY(150px) scale(1.2); }
 
 .marquee-inner {
     display: flex;
-    white-space: nowrap;
-    animation: marquee-move 30s linear infinite;
+    animation: marquee-scroll 30s linear infinite;
 }
 
 .marquee-inner span {
-    font-family: 'Space Grotesk';
-    font-size: 3rem; /* Size chota kiya */
-    font-weight: 800;
-    padding: 0 50px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 6rem;
+    font-weight: 900;
+    padding-right: 60px;
+    text-transform: uppercase;
 }
 
-@keyframes marquee-move {
+@keyframes marquee-scroll {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
 }
 
-/* --- BENTO GRID --- */
+/* --- BENTO GRID STYLING --- */
 .footer-container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
-    position: relative;
-    z-index: 5;
     padding: 0 20px;
+    position: relative;
+    z-index: 10;
 }
 
 .footer-bento-grid {
@@ -61,54 +62,76 @@
 }
 
 .bento-tile {
-    background: rgba(20, 20, 20, 0.8);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 35px;
     padding: 40px;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: 0.4s ease;
 }
 
-.cta-tile { grid-column: span 2; }
-.cta-tile h2 { font-size: 3.5rem; line-height: 1; margin: 15px 0; }
-.cta-tile h2 span { color: var(--accent); }
+.bento-tile:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: #d1d1d1;
+}
 
-/* Social Icons Animation */
-.socials-parent { display: flex; align-items: center; justify-content: center; }
-.social-grid {
+/* Tile Layouts */
+.cta-box { grid-column: span 2; }
+.social-box { grid-column: span 1; }
+.links-box { grid-column: span 1; }
+.contact-box { grid-column: span 2; }
+.bottom-bar { grid-column: span 3; padding: 25px 40px; }
+
+/* Content Details */
+.mini-tag { font-size: 0.7rem; letter-spacing: 3px; color: #666; font-weight: 700; margin-bottom: 20px; display: block; }
+.cta-box h2 { font-family: 'Space Grotesk'; font-size: 3rem; margin: 15px 0; }
+.cta-box h2 span { color: #0070f3; }
+
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #000;
+    padding: 12px 30px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.social-links-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 12px;
 }
 
 .s-link {
-    width: 50px;
-    height: 50px;
-    background: #111;
-    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 15px;
     color: #fff;
-    transition: 0.4s;
+    transition: 0.3s;
 }
 
-.s-link:hover {
-    background: #fff;
-    color: #000;
-    transform: translateY(-5px) rotate(8deg);
-}
+.s-link:hover { color: black; background: #fdfdfd; transform: scale(1.1) rotate(5deg); }
 
-.footer-bottom { grid-column: span 3; padding: 20px 40px; }
-.bottom-flex { display: flex; justify-content: space-between; font-size: 0.8rem; color: #666; }
+.link-columns { display: flex; flex-direction: column; gap: 10px; }
+.link-columns a { color: #aaa; text-decoration: none; font-weight: 500; transition: 0.3s; }
+.link-columns a:hover { color: #fff; transform: translateX(5px); }
 
-/* Mobile Adjustment (2/2 Grid) */
-@media (max-width: 768px) {
-    .footer-bento-grid { grid-template-columns: repeat(2, 1fr); }
-    .cta-tile { grid-column: span 2; padding: 30px; }
-    .cta-tile h2 { font-size: 2.5rem; }
-    .socials-parent { grid-column: span 1; }
-    .info-tile { grid-column: span 1; }
-    .footer-bottom { grid-column: span 2; }
-    .footer-section { padding-bottom: 120px; } /* Mobile nav space */
+.contact-details .c-item { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; color: #ccc; }
+.contact-details i { color: #0070f3; width: 20px; }
+
+.footer-flex { display: flex; justify-content: space-between; align-items: center; color: #444; font-size: 0.85rem; }
+.legal { display: flex; gap: 20px; }
+.legal a { color: #444; text-decoration: none; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .footer-bento-grid { grid-template-columns: 1fr; }
+    .cta-box, .social-box, .links-box, .contact-box, .bottom-bar { grid-column: span 1; }
 }

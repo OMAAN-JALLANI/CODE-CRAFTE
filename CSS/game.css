@@ -1,0 +1,93 @@
+.puzzle-section {
+    padding: 100px 5%;
+    background: #ffffff;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.exclusive-tag {
+    color: #888;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* 2-Column Grid Setup */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* LEFT SIDE Styling */
+.info-side {
+    text-align: left;
+}
+
+.sale-badge {
+    background: #0070f3;
+    color: #fff;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Space Grotesk', sans-serif;
+    animation: pulse-red 2s infinite;
+    margin-bottom: 30px;
+    transform: rotate(-10deg);
+}
+
+.discount-num { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+.discount-text { font-size: 1rem; font-weight: 700; }
+
+.instruction-title { font-family: 'Space Grotesk'; font-size: 2rem; margin-bottom: 15px; }
+.instruction-desc { font-size: 1.1rem; color: #444; line-height: 1.6; margin-bottom: 25px; }
+.highlight { color:#0070f3; font-weight: 900; border-bottom: 2px dashed #4e7be4; }
+
+.steps-list { list-style: none; padding: 0; }
+.steps-list li { 
+    margin-bottom: 12px; 
+    font-weight: 600; 
+    display: flex; 
+    align-items: center;
+    gap: 10px;
+}
+
+/* RIGHT SIDE (Game Board) */
+.puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    grid-template-rows: repeat(3, 110px);
+    gap: 3px;
+    background: #0b0b0b;
+    padding: 10px;
+    border-radius: 7px;
+    width: fit-content;
+    margin: 0 auto;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+}
+
+/* Animations */
+@keyframes pulse-red {
+    0% { transform: scale(1) rotate(-10deg); box-shadow: 0 0 0 0 rgba(41, 117, 231, 0.479); }
+    70% { transform: scale(1.1) rotate(-10deg); box-shadow: 0 0 0 20px rgba(255, 0, 0, 0); }
+    100% { transform: scale(1) rotate(-10deg); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+    .content-grid { grid-template-columns: 1fr; text-align: center; }
+    .info-side { display: flex; flex-direction: column; align-items: center; order: 1; }
+    .game-side { order: 2; margin-top: 40px; }
+    .puzzle-board { grid-template-columns: repeat(3, 90px); grid-template-rows: repeat(3, 90px); }
+    .tile { width: 90px !important; height: 90px !important; background-size: 270px 270px !important; }
+}

@@ -49,8 +49,9 @@
 .reveal-text {
     font-family: 'Space Grotesk', sans-serif;
     font-size: clamp(2rem, 8vw, 5rem);
-    font-weight: 700;
+    font-weight: 1000;
     line-height: 1.1;
+    font-size: 100px;
     letter-spacing: -2px;
     position: relative;
     
@@ -61,7 +62,7 @@
     background: radial-gradient(
         400px circle at var(--mouse-x) var(--mouse-y),
         #ff0080 0%,    /* Pink */
-        #7928ca 30%,   /* Purple */
+       #ffdb00 30%,   /* Purple */
         #ff4d4d 60%,   /* Red */
         #000 100%      /* Back to Black */
     );
@@ -84,4 +85,10 @@
     filter: blur(0px);
     opacity: 1;
     transform: scale(1);
+}
+
+@media (max-width: 768px) {
+    .reveal-text {
+        font-size: 60px;
+    }
 }

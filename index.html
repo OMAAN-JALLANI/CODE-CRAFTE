@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="./CSS/Plus.css">
     <link rel="stylesheet" href="./CSS/footer.css">
     <link rel="stylesheet" href="./CSS/Review.css">
-    
+    <link rel="stylesheet" href="./CSS/game.css">
+    <link rel="stylesheet" href="./CSS/contatc.css">
     <style>
         :root {
             --bg: #ffffff;
@@ -117,48 +118,94 @@
         }
 
         /* --- BOTTOM NAVIGATION (App Style) --- */
-        .bottom-nav {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 500px;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 25px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 100;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-        }
+       :root {
+    --accent: #ffd000;
+    
+    --nav-bg: rgba(255, 255, 255, 0.49);
+}
 
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.7rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
+.bottom-nav {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 480px;
+    height: 75px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
 
-        .nav-item i {
-            margin-bottom: 4px;
-            width: 20px;
-            height: 20px;
-        }
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.65rem;
+    font-weight: 600;
+    position: relative;
+    width: 60px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        .nav-item:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
+/* Icon Wrapper for Animation */
+.nav-icon-wrapper {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 2px;
+}
 
+.nav-item i {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2.2;
+}
+
+/* --- THE AMAZING HOVER ANIMATION --- */
+.nav-item:hover {
+    color: var(--accent);
+}
+
+.nav-item:hover .nav-icon-wrapper {
+    background: black;
+    color: #fff;
+    transform: translateY(-25px) scale(1.2); /* Icon bahar aa jayega */
+    box-shadow: 0 10px 20px rgba(17, 17, 17, 0.3);
+}
+
+/* Hover par text hide karna (Optional: Agar aapko clean look chahiye) */
+.nav-item span {
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.nav-item:hover span {
+    transform: translateY(5px);
+    opacity: 0; /* Jab icon upar jaye to text hide ho jaye for cool effect */
+}
+
+/* Special Styling for Profile Item */
+.profile-nav .nav-icon-wrapper {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Active State (JS se class add kar sakte ho) */
+.nav-item.active {
+    color: var(--accent);
+}
         /* --- ANIMATIONS --- */
         @keyframes fadeInUp {
             to { opacity: 1; transform: translateY(0); }
@@ -170,7 +217,7 @@
             .bottom-nav { width: 95%; bottom: 15px; border-radius: 20px; }
         }
     </style>
-<!--TRUST-->
+
 </head>
 <body>
 
@@ -184,24 +231,30 @@
         </div>
     </section>
 
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item">
-            <i data-lucide="home"></i>
-            <span>Home</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i data-lucide="layers"></i>
-            <span>Services</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i data-lucide="briefcase"></i>
-            <span>Work</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i data-lucide="mail"></i>
-            <span>Contact</span>
-        </a>
-    </nav><script>
+   <nav class="bottom-nav">
+    <a href="#home" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="home"></i></div>
+        <span>Home</span>
+    </a>
+    <a href="#services" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="users"></i></div>
+        <span>Our Team</span>
+    </a>
+    <a href="#work" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="book-open"></i></div>
+        <span>Our Story</span>
+    </a>
+    <a href="#contact" class="nav-item">
+        <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
+        <span>Contact</span>
+    </a>
+    <a href="#login" class="nav-item profile-nav">
+        <div class="nav-icon-wrapper"><i data-lucide="user"></i></div>
+        <span>Profile</span>
+    </a>
+</nav>
+    
+    <script>
         // 1. Generate Grid Boxes
         const gridContainer = document.getElementById('grid-container');
         const totalBoxes = 300; // Adjusted for performance
@@ -245,8 +298,12 @@
     <div class="tape-container">
         <div class="deep-tape tape-yellow blur-effect">
             <div class="tape-scroll">TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH • </div>
+             <div class="tape-scroll">TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH • </div>
+              <div class="tape-scroll">TOP SECRET INTEL • GLOBAL IMPACT • NEXT-GEN TECH • </div>
         </div>
         <div class="deep-tape tape-black blur-effect">
+            <div class="tape-scroll-reverse">RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION • </div>
+            <div class="tape-scroll-reverse">RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION • </div>
             <div class="tape-scroll-reverse">RESTRICTED ACCESS • ELITE PARTNERS • 2026 VISION • </div>
         </div>
     </div>
@@ -312,8 +369,22 @@
             <div class="service-card">
                 <div class="card-bg"></div>
                 <div class="card-content">
-                    <i data-lucide="globe" class="s-icon"></i>
-                    <h3>WordPress</h3>
+                    <i data-lucide="shopping-bag" class="s-icon"></i>
+                    <h3>E-com</h3>
+                </div>
+            </div>
+             <div class="service-card">
+                <div class="card-bg"></div>
+                <div class="card-content">
+                    <i data-lucide="presentation" class="s-icon"></i>
+                    <h3>PPT Slides</h3>
+                </div>
+            </div>
+             <div class="service-card">
+                <div class="card-bg"></div>
+                <div class="card-content">
+                    <i data-lucide="megaphone" class="s-icon"></i>
+                    <h3>Social Media Marketing</h3>
                 </div>
             </div>
         </div>
@@ -335,70 +406,186 @@ lucide.createIcons();</script>
 
 
 
-<!--Lanyardddd-->
+<!--GAMEEEE-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<section class="puzzle-section">
+    <div class="main-header">
+        <span class="exclusive-tag">CODECRAFTE EXCLUSIVE</span>
+        <h2 class="glaze-text">Play & Unlock the Future</h2>
+    </div>
+
+    <div class="content-grid">
+        <div class="info-side">
+            <div class="sale-badge">
+                <span class="discount-num">15%</span>
+                <span class="discount-text">OFF</span>
+            </div>
+            <h3 class="instruction-title">Wanna Save Big?</h3>
+            <p class="instruction-desc">
+                Humari team ke sath kaam shuru karne se pehle ye chota sa 
+                <strong>Logo Challenge</strong> solve karein aur foran 
+                <span class="highlight">15% Discount Token</span> hasil karein.
+            </p>
+            <ul class="steps-list">
+                <li><div class="icon-box"><i data-lucide="puzzle"></i></div> Match the pieces of the logo.</li>
+                <li><div class="icon-box"><i data-lucide="zap"></i></div> Win & get a unique 6-digit code.</li>
+                <li><div class="icon-box"><i data-lucide="form-input"></i></div> Use it in the contact form.</li>
+            </ul>
+        </div>
+
+        <div class="game-side">
+            <div class="puzzle-board" id="board"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const board = document.getElementById('board');
+let tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8]; // 8 empty hai
+
+function createBoard() {
+    board.innerHTML = '';
+    tiles.forEach((tileNum, index) => {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        tile.style.width = "110px";
+        tile.style.height = "110px";
+        tile.style.borderRadius = "8px";
+        tile.style.backgroundImage = "url('./images/logo.png')"; // Logo path set karein
+        tile.style.backgroundSize = "330px 330px";
+
+        if (tileNum === 8) {
+            tile.style.background = "#1a1a1a";
+            tile.classList.add('empty');
+        } else {
+            const row = Math.floor(tileNum / 3);
+            const col = tileNum % 3;
+            tile.style.backgroundPosition = `-${col * 110}px -${row * 110}px`;
+            tile.style.cursor = "pointer";
+            tile.addEventListener('click', () => moveTile(index));
+        }
+        board.appendChild(tile);
+    });
+}
+
+function moveTile(index) {
+    const emptyIndex = tiles.indexOf(8);
+    const validMoves = [index-1, index+1, index-3, index+3];
+    
+    // Check if empty tile is adjacent
+    if (validMoves.includes(emptyIndex)) {
+        [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+        createBoard();
+        checkWin();
+    }
+}
+
+function checkWin() {
+    if (tiles.every((tile, index) => tile === index)) {
+        const finalCode = Math.floor(100000 + Math.random() * 900000);
+        alert("🎉 CONGRATULATIONS!\nYour 15% OFF Code is: " + finalCode + "\nGo to contact page and enter this token.");
+        
+        // Email sending logic (EmailJS) yahan add ho sakti hai
+    }
+}
+
+// Start Game with Shuffle
+tiles = tiles.sort(() => Math.random() - 0.5);
+createBoard();
+</script>
+
+
 
 
 <!--PROCESS-->
   
-<section class="bento-section">
-    <div class="bento-container">
-        <div class="services-intro">
-            <span class="tag">PROCESS</span>
-            <h2>Our Workflow.</h2>
-        </div>
+<section class="workflow-section">
+    <div class="workflow-container">
+        <h2 class="workflow-title">Our <span>Process</span></h2>
+        
+        <div class="flow-wrapper">
+            <svg class="flow-line" viewBox="0 0 100 500" preserveAspectRatio="none">
+                <path d="M50,0 L50,500" class="path-bg"></path>
+                <path d="M50,0 L50,500" class="path-fill"></path>
+            </svg>
 
-        <div class="bento-grid">
-            <div class="bento-item item-large">
-                <div class="spotlight"></div>
-                <div class="bento-content">
-                    <span class="b-num">01</span>
-                    <h3>Discovery</h3>
-                    <p>Understanding your vision before we write a single line of code.</p>
+            <div class="flow-step">
+                <div class="step-num">1</div>
+                <div class="flow-card">
+                    <i data-lucide="coffee"></i>
+                    <h4>Chai & Chat</h4>
+                    <p>Discovery call jahan hum aapka vision aur goals samjhte hain.</p>
                 </div>
             </div>
 
-            <div class="bento-item">
-                <div class="spotlight"></div>
-                <div class="bento-content">
-                    <span class="b-num">02</span>
-                    <h3>Design</h3>
-                    <p>Crafting high-end UI/UX prototypes.</p>
+            <div class="flow-step">
+                <div class="step-num">2</div>
+                <div class="flow-card">
+                    <i data-lucide="layers"></i>
+                    <h4>Blueprint</h4>
+                    <p>Wireframes aur project strategy jo success ka rasta tay karein.</p>
                 </div>
             </div>
 
-            <div class="bento-item">
-                <div class="spotlight"></div>
-                <div class="bento-content">
-                    <span class="b-num">03</span>
-                    <h3>Develop</h3>
-                    <p>Clean, scalable code architecture.</p>
+            <div class="flow-step">
+                <div class="step-num">3</div>
+                <div class="flow-card">
+                    <i data-lucide="palette"></i>
+                    <h4>Premium UI</h4>
+                    <p>Custom design jo aapke brand ko elite look dega.</p>
                 </div>
             </div>
 
-            <div class="bento-item item-wide">
-                <div class="spotlight"></div>
-                <div class="bento-content">
-                    <span class="b-num">04</span>
-                    <h3>Launch & Support</h3>
-                    <p>Final testing, deployment, and 24/7 technical maintenance for your product.</p>
+            <div class="flow-step">
+                <div class="step-num">4</div>
+                <div class="flow-card">
+                    <i data-lucide="code-2"></i>
+                    <h4>Development</h4>
+                    <p>Clean code aur modern tech stack se functionality build karna.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-num">5</div>
+                <div class="flow-card">
+                    <i data-lucide="rocket"></i>
+                    <h4>Launch Day</h4>
+                    <p>Live deployment aur 1-month free support ke sath shubharambh.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
 <script>
-    document.querySelectorAll('.bento-item').forEach(item => {
-    item.addEventListener('mousemove', e => {
-        const rect = item.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+    window.addEventListener('scroll', () => {
+    const path = document.querySelector('.path-fill');
+    const scrollContainer = document.querySelector('.flow-wrapper');
+    
+    // Calculate scroll percentage within the workflow section
+    const sectionTop = scrollContainer.getBoundingClientRect().top;
+    const sectionHeight = scrollContainer.offsetHeight;
+    const windowHeight = window.innerHeight;
 
-        item.style.setProperty('--x', `${x}px`);
-        item.style.setProperty('--y', `${y}px`);
+    let scrollPercent = (windowHeight / 2 - sectionTop) / sectionHeight;
+    scrollPercent = Math.min(Math.max(scrollPercent, 0), 1);
+
+    // Update SVG Path
+    const drawLength = 500 * scrollPercent;
+    path.style.strokeDashoffset = 500 - drawLength;
+
+    // Optional: Fade in cards as they hit the line
+    document.querySelectorAll('.flow-card').forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < windowHeight * 0.7) {
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+        }
     });
 });
+
+// Initialize Lucide
+lucide.createIcons();
 </script>
 <!--Pulse-->
 
@@ -554,145 +741,122 @@ window.addEventListener('scroll', () => {
 });
 </script>
 
-<!--reviewww-->
-
-<section class="reviews-section">
-    <div class="smoke-edge left"></div>
-    <div class="smoke-edge right"></div>
-
-    <div class="reviews-wrapper">
-        <div class="review-row" id="row-1">
-            <div class="marquee-track ltr">
-                <div class="review-card">
-                    <p>"Bhai kamal kar diya! CodeCrafte ne meri E-commerce site aisi banayi ke sales double ho gayi hain. Highly recommended!"</p>
-                    <span>- Arsalan Khan, Karachi</span>
-                </div>
-                <div class="review-card">
-                    <p>"Lahore mein boht software houses dekhay par in jaisa professional bento layout aur speed kahin nahi mili."</p>
-                    <span>- Usman Sheikh, Lahore</span>
-                </div>
-                <div class="review-card">
-                    <p>"Best service for startups. Inho ne mera CRM itna smooth banaya ke manage karna asaan ho gaya."</p>
-                    <span>- Zeeshan, Islamabad</span>
-                </div>
-                <div class="review-card">
-                    <p>"Inki design sense international level ki hai. Client ko presentation dikhayi toh wo pehli baar mein impress ho gaya."</p>
-                    <span>- Hamza Malik, Faisalabad</span>
-                </div>
-                </div>
+<!--CONTACTTT-->
+  
+<section class="direct-contact-section">
+    <div class="contact-flex-container">
+        
+        <div class="contact-visual">
+            <img src="./images/CTA.png" alt="CodeCrafte Illustration" class="floating-img">
+            <div class="visual-glow"></div>
         </div>
 
-        <div class="review-row" id="row-2">
-            <div class="marquee-track rtl">
-                <div class="review-card">
-                    <p>"Pehlay dar lag raha tha ke online kam kaisa hoga, par CodeCrafte ne har step pe guide kiya. Shandar team!"</p>
-                    <span>- Bilal Siddiqui, Multan</span>
-                </div>
-                <div class="review-card">
-                    <p>"App development ka kaam in se behtar koi nahi kar sakta Pakistan mein. Performance 10/10 hai."</p>
-                    <span>- Dr. Amna, Rawalpindi</span>
-                </div>
-                <div class="review-card">
-                    <p>"Fast delivery aur responsive design. Inho ne meri portfolio site 1 hafte mein live kar di!"</p>
-                    <span>- Saad Ali, Peshawar</span>
+        <div class="contact-content">
+            <h2 class="section-title">Get in touch</h2>
+            <p class="section-desc">
+                Thanks for your interest in CodeCrafte. Choose from the options below and we'll connect you with the right person.
+            </p>
+            
+            <div class="action-buttons">
+                <a href="https://wa.me/yournumber" class="primary-btn">
+                    Send a message <i data-lucide="send"></i>
+                </a>
+                
+                <div class="secondary-links">
+                    <a href="mailto:codecrafte07@gmail.com" class="text-link">
+                        <i data-lucide="mail"></i> Email Us
+                    </a>
+                    <a href="#" class="text-link">
+                        <i data-lucide="calendar"></i> Book a Call
+                    </a>
                 </div>
             </div>
         </div>
+
     </div>
 </section>
-<script>
-    const allTracks = document.querySelectorAll('.marquee-track');
-let lastScroll = 0;
-
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    const scrollDelta = Math.abs(currentScroll - lastScroll);
-    
-    // Speed increase factor
-    const speedMultiplier = 1 + (scrollDelta / 10); 
-    
-    allTracks.forEach(track => {
-        // Normal speed 60s thi, scroll par ye 5s-10s tak ja sakti hai
-        const newDuration = Math.max(5, 60 / speedMultiplier);
-        track.style.animationDuration = `${newDuration}s`;
-    });
-
-    lastScroll = currentScroll;
-
-    // Reset speed after scrolling stops
-    clearTimeout(window.scrollReset);
-    window.scrollReset = setTimeout(() => {
-        allTracks.forEach(track => track.style.animationDuration = '60s');
-    }, 100);
-});
-</script>
-
-
 
 
  <!--footerrr-->
 
  <footer class="footer-section">
-    <div class="marquee-wrapper">
-        <div class="marquee slanted-1">
+    <div class="footer-bg-decoration">
+        <div class="marquee slanted-up">
             <div class="marquee-inner">
-                <span>CONNECT WITH US • GET A QUOTE • START YOUR JOURNEY •</span>
-                <span>CONNECT WITH US • GET A QUOTE • START YOUR JOURNEY •</span>
+                <span>STRATEGY • DESIGN • DEVELOPMENT • MARKETING • STRATEGY • DESIGN • DEVELOPMENT • MARKETING •</span>
             </div>
         </div>
-        <div class="marquee slanted-2">
+        <div class="marquee slanted-down">
             <div class="marquee-inner">
-                <span>CODECRAFTE • INNOVATION • DIGITAL FUTURE • DESIGN •</span>
-                <span>CODECRAFTE • INNOVATION • DIGITAL FUTURE • DESIGN •</span>
+                <span>CODECRAFTE • INNOVATION • FUTURE • CODECRAFTE • INNOVATION • FUTURE •</span>
             </div>
         </div>
     </div>
+    
 
     <div class="footer-container">
         <div class="footer-bento-grid">
-            <div class="bento-tile cta-tile">
-                <div class="tile-wave"></div>
-                <div class="tile-content">
-                    <span class="mini-tag">PROJECTS</span>
-                    <h2>Ready to <br><span>Elevate?</span></h2>
-                    <p>Hamara agla bara project aapka idea ho sakta hai.</p>
-                </div>
+            <div class="bento-tile cta-box">
+                <span class="mini-tag">GET STARTED</span>
+                <h2>Let’s build something <br><span>Extraordinary.</span></h2>
+                <p>Digital solutions tailored to your brand's growth.</p>
+                <a href="#contact" class="footer-btn">Start Project <i data-lucide="arrow-up-right"></i></a>
             </div>
 
-            <div class="bento-tile socials-parent">
-                <div class="social-grid">
+            <div class="bento-tile social-box">
+                <span class="mini-tag">CONNECT</span>
+                <div class="social-links-grid">
                     <a href="#" class="s-link"><i data-lucide="instagram"></i></a>
                     <a href="#" class="s-link"><i data-lucide="linkedin"></i></a>
                     <a href="#" class="s-link"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="s-link"><i data-lucide="twitter"></i></a>
+                    <a href="#" class="s-link"><i data-lucide="github"></i></a>
                     <a href="#" class="s-link"><i data-lucide="message-circle"></i></a>
-                    <a href="#" class="s-link"><i data-lucide="music-2"></i></a> </div>
-            </div>
-
-             
-
-            <div class="bento-tile footer-bottom">
-                <div class="bottom-flex">
-                    <p>© 2026 CODECRAFTE</p>
-                    <p>Built with Passion</p>
                 </div>
             </div>
-        </div>
-         <div class="marquee-wrapper" style="margin-top: 300px;">
-        <div class="marquee slanted-1">
+
+            <div class="bento-tile links-box">
+                <span class="mini-tag">EXPLORE</span>
+                <div class="link-columns">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#work">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div class="bento-tile contact-box">
+                <span class="mini-tag">REACH US</span>
+                <div class="contact-details">
+                    <div class="c-item"><i data-lucide="mail"></i> <span>codecrafte07@gmail.com</span></div>
+                    <div class="c-item"><i data-lucide="phone"></i> <span>+92 3059462051</span></div>
+                    <div class="c-item"><i data-lucide="map-pin"></i> <span>Shahzad Nagar, BahawalNagar, Punjab</span></div>
+                </div>
+            </div>
+
+            <div class="bento-tile bottom-bar">
+                <div class="footer-flex">
+                    <p>© 2026 CODECRAFTE. All rights reserved.</p>
+                    <div class="legal">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bg-decoration" style="margin-top: 300px;">
+        <div class="marquee slanted-up">
             <div class="marquee-inner">
-                <span>CONNECT WITH US • GET A QUOTE • START YOUR JOURNEY •</span>
-                <span>CONNECT WITH US • GET A QUOTE • START YOUR JOURNEY •</span>
+                <span>STRATEGY • DESIGN • DEVELOPMENT • MARKETING • STRATEGY • DESIGN • DEVELOPMENT • MARKETING •</span>
             </div>
         </div>
-        <div class="marquee slanted-2">
+        <div class="marquee slanted-down">
             <div class="marquee-inner">
-                <span>CODECRAFTE • INNOVATION • DIGITAL FUTURE • DESIGN •</span>
-                <span>CODECRAFTE • INNOVATION • DIGITAL FUTURE • DESIGN •</span>
+                <span>CODECRAFTE • INNOVATION • FUTURE • CODECRAFTE • INNOVATION • FUTURE •</span>
             </div>
         </div>
     </div>
+        </div>
     </div>
-    
 </footer>
 <script>
     // Har social link par halka sa delay ke sath animation
