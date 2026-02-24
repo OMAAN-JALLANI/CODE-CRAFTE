@@ -407,62 +407,83 @@ lucide.createIcons();</script>
 
 
 <!--GAMEEEE-->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 <section class="puzzle-section">
-    <div class="main-header">
-        <span class="exclusive-tag">CODECRAFTE EXCLUSIVE</span>
-        <h2 class="glaze-text">Play & Unlock the Future</h2>
-    </div>
-
-    <div class="content-grid">
+    <div class="puzzle-container-wrapper">
+        
         <div class="info-side">
+            <span class="exclusive-tag">CODECRAFTE EXCLUSIVE</span>
             <div class="sale-badge">
                 <span class="discount-num">15%</span>
                 <span class="discount-text">OFF</span>
             </div>
+            <h2 class="glaze-text">Play & Unlock the Future</h2>
             <h3 class="instruction-title">Wanna Save Big?</h3>
             <p class="instruction-desc">
-                Humari team ke sath kaam shuru karne se pehle ye chota sa 
-                <strong>Logo Challenge</strong> solve karein aur foran 
-                <span class="highlight">15% Discount Token</span> hasil karein.
+                Solve this **Logo Challenge** and unlock an instant 
+                <span class="highlight">15% Discount Token</span> for your project.
             </p>
+            
             <ul class="steps-list">
-                <li><div class="icon-box"><i data-lucide="puzzle"></i></div> Match the pieces of the logo.</li>
-                <li><div class="icon-box"><i data-lucide="zap"></i></div> Win & get a unique 6-digit code.</li>
-                <li><div class="icon-box"><i data-lucide="form-input"></i></div> Use it in the contact form.</li>
+                <li><i data-lucide="play-circle"></i> Click Start for a 3s preview.</li>
+                <li><i data-lucide="puzzle"></i> Rearrange the pieces correctly.</li>
+                <li><i data-lucide="check-circle"></i> Win and copy your unique code.</li>
             </ul>
         </div>
 
         <div class="game-side">
-            <div class="puzzle-board" id="board"></div>
+            <div class="board-wrapper">
+                <div id="game-overlay" class="game-overlay">
+                    <button id="start-btn" class="start-game-btn">START CHALLENGE</button>
+                </div>
+                
+                <div id="countdown-overlay" class="countdown-overlay" style="display: none;">
+                    <span id="countdown-text">3</span>
+                </div>
+
+                <div class="puzzle-board" id="board"></div>
+
+                <div id="win-display" class="win-display" style="display: none;">
+                    <h4>Victory!</h4>
+                    <p>Use this code in contact form:</p>
+                    <div class="code-box">
+                        <span id="promo-code">XXXXXX</span>
+                        <button onclick="copyCode()" class="copy-btn"><i data-lucide="copy"></i></button>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </section>
 
 <script>
     const board = document.getElementById('board');
-let tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8]; // 8 empty hai
+const overlay = document.getElementById('game-overlay');
+const countdownOverlay = document.getElementById('countdown-overlay');
+const countdownText = document.getElementById('countdown-text');
+const winDisplay = document.getElementById('win-display');
+const startBtn = document.getElementById('start-btn');
 
-function createBoard() {
+let tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let gameStarted = false;
+
+function createBoard(isPreview = false) {
     board.innerHTML = '';
     tiles.forEach((tileNum, index) => {
         const tile = document.createElement('div');
         tile.classList.add('tile');
-        tile.style.width = "110px";
-        tile.style.height = "110px";
-        tile.style.borderRadius = "8px";
-        tile.style.backgroundImage = "url('./images/logo.png')"; // Logo path set karein
+        tile.style.backgroundImage = "url('./images/logo.png')"; 
         tile.style.backgroundSize = "330px 330px";
 
-        if (tileNum === 8) {
+        // Calculate correct positions
+        const row = Math.floor(tileNum / 3);
+        const col = tileNum % 3;
+        tile.style.backgroundPosition = `-${col * 110}px -${row * 110}px`;
+
+        if (!isPreview && tileNum === 8) {
             tile.style.background = "#1a1a1a";
             tile.classList.add('empty');
-        } else {
-            const row = Math.floor(tileNum / 3);
-            const col = tileNum % 3;
-            tile.style.backgroundPosition = `-${col * 110}px -${row * 110}px`;
-            tile.style.cursor = "pointer";
+        } else if (gameStarted) {
             tile.addEventListener('click', () => moveTile(index));
         }
         board.appendChild(tile);
@@ -471,28 +492,68 @@ function createBoard() {
 
 function moveTile(index) {
     const emptyIndex = tiles.indexOf(8);
-    const validMoves = [index-1, index+1, index-3, index+3];
     
-    // Check if empty tile is adjacent
-    if (validMoves.includes(emptyIndex)) {
+    // Logic: Calculate row and col for both
+    const row = Math.floor(index / 3);
+    const col = index % 3;
+    const emptyRow = Math.floor(emptyIndex / 3);
+    const emptyCol = emptyIndex % 3;
+
+    // Glitch Fix: Check if distance is exactly 1 (Top, Bottom, Left, Right ONLY)
+    const isAdjacent = (Math.abs(row - emptyRow) + Math.abs(col - emptyCol)) === 1;
+
+    if (isAdjacent) {
         [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
         createBoard();
         checkWin();
     }
 }
 
+startBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    countdownOverlay.style.display = 'flex';
+    
+    // Phase 1: Show full logo as preview
+    tiles = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    createBoard(true);
+
+    let count = 3;
+    const timer = setInterval(() => {
+        count--;
+        if (count > 0) {
+            countdownText.innerText = count;
+        } else {
+            clearInterval(timer);
+            startGame();
+        }
+    }, 1000);
+});
+
+function startGame() {
+    countdownOverlay.style.display = 'none';
+    gameStarted = true;
+    // Shuffle tiles
+    tiles = tiles.sort(() => Math.random() - 0.5);
+    createBoard();
+}
+
 function checkWin() {
     if (tiles.every((tile, index) => tile === index)) {
-        const finalCode = Math.floor(100000 + Math.random() * 900000);
-        alert("🎉 CONGRATULATIONS!\nYour 15% OFF Code is: " + finalCode + "\nGo to contact page and enter this token.");
-        
-        // Email sending logic (EmailJS) yahan add ho sakti hai
+        const code = Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('promo-code').innerText = code;
+        winDisplay.style.display = 'flex';
+        gameStarted = false;
     }
 }
 
-// Start Game with Shuffle
-tiles = tiles.sort(() => Math.random() - 0.5);
-createBoard();
+function copyCode() {
+    const code = document.getElementById('promo-code').innerText;
+    navigator.clipboard.writeText(code);
+    alert("Code Copied! Use it in the contact form.");
+}
+
+// Initial State
+createBoard(true);
 </script>
 
 
@@ -824,21 +885,73 @@ window.addEventListener('scroll', () => {
                     <a href="#contact">Contact</a>
                 </div>
             </div>
+            <style>
+                .link-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Links ke darmiyan barabar fasla */
+    margin-top: 10px;
+}
+
+.link-columns a {
+    color: #ffffff !important; /* Pure white taake dark background par chamke */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    opacity: 0.8; /* Normal state mein thora halka */
+}
+
+/* Hover Animation: Text right move hoga aur chamkega */
+.link-columns a:hover {
+    opacity: 1;
+    color: #0070f3 !important; /* Ya jo bhi aapka theme color hai */
+    transform: translateX(8px); /* Right side halka sa slide */
+}
+
+/* Optional: Har link ke agay chota sa arrow ya dot lane ke liye */
+.link-columns a::before {
+    content: '→';
+    margin-right: 10px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: 0.3s;
+    transform: translateX(-10px);
+}
+
+.link-columns a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+            </style>
 
             <div class="bento-tile contact-box">
-                <span class="mini-tag">REACH US</span>
-                <div class="contact-details">
-                    <div class="c-item"><i data-lucide="mail"></i> <span>codecrafte07@gmail.com</span></div>
-                    <div class="c-item"><i data-lucide="phone"></i> <span>+92 3059462051</span></div>
-                    <div class="c-item"><i data-lucide="map-pin"></i> <span>Shahzad Nagar, BahawalNagar, Punjab</span></div>
-                </div>
-            </div>
+    <span class="mini-tag">REACH US</span>
+    <div class="contact-grid-inner">
+        <div class="contact-details-text">
+            <div class="c-item"><i data-lucide="mail"></i> <span>codecrafte07@gmail.com</span></div>
+            <div class="c-item"><i data-lucide="phone"></i> <span>+92 3059462051</span></div>
+            <div class="c-item"><i data-lucide="map-pin"></i> <span>Shahzad Nagar, BahawalNagar, Punjab</span></div>
+        </div>
+        
+        <div class="contact-map">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13735.61765053272!2d73.2644265!3d29.9950785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3914f7762692257f%3A0x867332219b168972!2sBahawalnagar%2C%20Punjab!5e0!3m2!1sen!2spk!4v1700000000000!5m2!1sen!2spk" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</div>
 
             <div class="bento-tile bottom-bar">
                 <div class="footer-flex">
                     <p>© 2026 CODECRAFTE. All rights reserved.</p>
                     <div class="legal">
                         <a href="#">Privacy</a>
+                        <a >&</a>
                         <a href="#">Terms</a>
                     </div>
                 </div>
