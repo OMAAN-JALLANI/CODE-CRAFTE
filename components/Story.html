@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff; /* Pure White Back */
+            color: #111;
+            overflow-x: hidden;
+        }
+
+        /* --- SECTION 1: THE 3D SPARK HERO --- */
+        .story-hero {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: #ffffff;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        /* Particles Canvas Layer */
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            /* Halka sa fade taake text par focus rahe */
+            opacity: 0.6; 
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10; /* Text particles ke upar rahega */
+            max-width: 1000px;
+            pointer-events: none; /* Mouse particles ko touch kar sakay */
+        }
+
+        .pre-title {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: #0070f3; /* Your Theme Blue */
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            display: block;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -3px;
+            margin-bottom: 35px;
+            color: #000;
+            animation: slideUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .main-title span {
+            color: #0070f3;
+            -webkit-text-stroke: 1px #0070f3;
+            background: linear-gradient(90deg, #0070f3, #00d2ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sub-text {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: #555;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 0.8s;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .story-hero {
+                height: 85vh; /* Mobile par thora chota */
+            }
+            .main-title {
+                letter-spacing: -1px;
+                line-height: 1.1;
+            }
+            #particle-canvas {
+                opacity: 0.4; /* Mobile par kam distraction */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="story-hero">
+        <div id="particle-canvas"></div>
+        
+        <div class="hero-content">
+            <span class="pre-title">THE GENESIS</span>
+            <h1 class="main-title">It Started with a <br><span>"What If?"</span></h1>
+            <p class="sub-text">
+                University was just the background noise. The real frequency was digital. In 2024, CodeCrafte was born—not in a lab, but in a mind obsessed with the future.
+            </p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script>
+        /* 3D PARTICLES CONFIGURATION (White Theme Edition) */
+        particlesJS('particle-canvas', {
+            "particles": {
+                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#000000" }, /* Black particles on White back */
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.2, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { 
+                    "enable": true, 
+                    "distance": 150, 
+                    "color": "#0070f3", /* Blue lines for the "Magic" touch */
+                    "opacity": 0.15, 
+                    "width": 1 
+                },
+                "move": { 
+                    "enable": true, 
+                    "speed": 1.5, 
+                    "direction": "none", 
+                    "random": true, 
+                    "out_mode": "out" 
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { 
+                    "onhover": { "enable": true, "mode": "grab" }, 
+                    "onclick": { "enable": true, "mode": "push" } 
+                },
+                "modes": { 
+                    "grab": { "distance": 250, "line_linked": { "opacity": 0.4 } } 
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+<!--ggggggggggggggggg-->
+
+<section class="story-nomad">
+    <div class="nomad-container">
+        
+        <div class="nomad-text">
+            <span class="step-tag">02 // THE JOURNEY</span>
+            <h2 class="nomad-title">Beyond <span>Borders.</span></h2>
+            <p class="nomad-p">
+                Before the agency, came the exposure. From the tech hubs of <strong>India</strong> to the rising digital landscape of <strong>Egypt</strong>, I spent my early years as an intern, absorbing global standards and cross-cultural workflows.
+            </p>
+            <p class="nomad-p">
+                This wasn't just about learning to code; it was about learning how the world builds.
+            </p>
+        </div>
+
+        <div class="nomad-visual">
+            <svg viewBox="0 0 500 300" class="connection-map">
+                <circle cx="250" cy="200" r="6" class="dot pk" /> <circle cx="100" cy="150" r="4" class="dot eg" /> <circle cx="400" cy="180" r="4" class="dot in" /> <path d="M250,200 Q150,100 100,150" class="path-line line-1" />
+                <path d="M250,200 Q325,150 400,180" class="path-line line-2" />
+            </svg>
+            
+            <div class="location-labels">
+                <span class="label l-eg">Egypt</span>
+                <span class="label l-pk">Home</span>
+                <span class="label l-in">India</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .story-nomad {
+        padding: 120px 5%;
+        background: #fafafa; /* Very light gray to distinguish from Hero */
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .nomad-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+    }
+
+    .nomad-text { position: relative; z-index: 2; }
+    
+    .step-tag { font-size: 11px; font-weight: 700; color: #999; letter-spacing: 4px; }
+    .nomad-title { font-size: 4rem; font-weight: 800; margin: 20px 0; line-height: 1; }
+    .nomad-title span { color: #0070f3; }
+    .nomad-p { color: #555; line-height: 1.8; margin-bottom: 20px; font-size: 1.1rem; }
+
+    /* Map Visual */
+    .nomad-visual {
+        position: relative;
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 40px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.03);
+    }
+
+    .connection-map { width: 100%; overflow: visible; }
+    
+    .dot { fill: #0070f3; filter: drop-shadow(0 0 8px rgba(0,112,243,0.5)); }
+    .pk { fill: #000; r: 8; }
+
+    .path-line {
+        fill: none;
+        stroke: #0070f3;
+        stroke-width: 2;
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500; /* Hidden by default */
+        transition: stroke-dashoffset 2s ease-in-out;
+        opacity: 0.4;
+    }
+
+    /* Animation Trigger (Jab user scroll karke yahan aaye) */
+    .story-nomad.active .path-line {
+        stroke-dashoffset: 0;
+    }
+
+    .location-labels { position: relative; }
+    .label { position: absolute; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #aaa; }
+    .l-eg { top: -170px; left: 15%; }
+    .l-pk { top: -110px; left: 50%; color: #000; }
+    .l-in { top: -140px; left: 80%; }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+        .nomad-container { grid-template-columns: 1fr; gap: 50px; text-align: center; }
+        .nomad-title { font-size: 2.8rem; }
+        .l-eg, .l-pk, .l-in { top: -130px; }
+    }
+</style>
+
+<script>
+    // Intersection Observer to trigger line animation on scroll
+    const nomadSection = document.querySelector('.story-nomad');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                nomadSection.classList.add('active');
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(nomadSection);
+</script>
+
+<!--ccccccccccccccccccccccccc-->
+<section class="story-forge">
+    <div class="forge-container">
+        
+        <div class="forge-content">
+            <span class="step-tag">03 // PROFESSIONAL EDGE</span>
+            <h2 class="forge-title">The <span>Coded</span> Evolution.</h2>
+            <p class="forge-p">
+                Internships gave me exposure, but <strong>CODEDCLOUDS</strong> gave me the discipline. This was where the "Student" became a "Specialist". 
+            </p>
+            
+            <div class="forge-stats">
+                <div class="f-stat"><strong>2+</strong><span>Years of Grit</span></div>
+                <div class="f-stat"><strong>50+</strong><span>Sprints</span></div>
+                <div class="f-stat"><strong>100k+</strong><span>Lines</span></div>
+            </div>
+        </div>
+
+        <div class="forge-visual">
+            <div class="experience-badge">
+                <div class="inner-badge">
+                    <p>CODED</p>
+                    <p>CLOUDS</p>
+                </div>
+            </div>
+            
+            <div class="code-card c1"><span>{</span> "Optimized" <span>}</span></div>
+            <div class="code-card c2"><span>const</span> growth = "∞";</div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .story-forge {
+        padding: 100px 20px;
+        background: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* Prevent horizontal scroll */
+    }
+
+    .forge-container {
+        width: 100%;
+        max-width: 1100px;
+        display: flex;
+        flex-direction: row; /* Desktop */
+        align-items: center;
+        gap: 50px;
+    }
+
+    .forge-content { flex: 1.2; }
+    .step-tag { font-size: 10px; font-weight: 700; color: #0070f3; letter-spacing: 4px; }
+    .forge-title { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1; margin: 20px 0; }
+    .forge-title span { color: #ddd; -webkit-text-stroke: 1px #333; }
+    .forge-p { font-size: 1.1rem; color: #555; line-height: 1.6; margin-bottom: 30px; }
+
+    .forge-stats {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap; /* Wrap on small screens */
+    }
+    .f-stat { background: #f8f9fa; padding: 15px; border-radius: 15px; min-width: 100px; text-align: center; }
+    .f-stat strong { display: block; font-size: 1.5rem; color: #000; }
+    .f-stat span { font-size: 0.7rem; color: #999; font-weight: 700; text-transform: uppercase; }
+
+    /* Visual Side */
+    .forge-visual {
+        flex: 1;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 350px;
+    }
+
+    .experience-badge {
+        width: 180px;
+        height: 180px;
+        background: #000;
+        border-radius: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: rotate(-8deg);
+        box-shadow: 0 30px 60px rgba(0,112,243,0.15);
+        z-index: 5;
+    }
+    .inner-badge p { color: #fff; font-weight: 800; font-size: 1.2rem; text-align: center; line-height: 1.1; }
+
+    .code-card {
+        position: absolute;
+        background: #fff;
+        padding: 10px 15px;
+        border-radius: 10px;
+        border: 1px solid #eee;
+        font-family: monospace;
+        font-size: 0.75rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        animation: float 4s ease-in-out infinite;
+    }
+    .c1 { top: 10%; right: 10%; animation-delay: 0s; }
+    .c2 { bottom: 10%; left: 10%; animation-delay: 1s; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+
+    /* --- MOBILE SPECIFIC FIXES --- */
+    @media (max-width: 850px) {
+        .forge-container {
+            flex-direction: column; /* Stack vertically */
+            text-align: center;
+        }
+        .forge-stats {
+            justify-content: center;
+        }
+        .forge-p {
+            margin: 0 auto 30px;
+        }
+        .forge-visual {
+            width: 100%;
+            height: 300px;
+            margin-top: 40px;
+        }
+        .experience-badge {
+            width: 150px;
+            height: 150px;
+        }
+        .code-card {
+            font-size: 0.65rem;
+        }
+    }
+</style>
+
+<!--wowwwwwwwwwwwwwwwwwww-->
+
+<section class="story-validation" id="horizontal-trigger">
+    <div class="sticky-wrapper">
+        <div class="ghost-container">
+            <h2 id="ghost-text">VALIDATION</h2>
+        </div>
+
+        <div class="horizontal-scroll" id="scroll-content">
+            
+            <div class="val-slide">
+                <div class="val-card">
+                    <span class="step-tag">05 // EUROPE</span>
+                    <h2>The Portugal <br><span>Breakthrough.</span></h2>
+                    <p>When the first client from Portugal signed, it wasn't just a contract. It was the moment CodeCrafte went global. We proved that quality code transcends borders.</p>
+                </div>
+            </div>
+
+            <div class="val-slide">
+                <div class="val-card">
+                    <span class="step-tag">LOCAL GIANTS</span>
+                    <h2>Madni <br><span>Steels.</span></h2>
+                    <p>Digitizing an industrial empire. We built a system that turned heavy steel operations into a seamless digital workflow.</p>
+                </div>
+            </div>
+
+            <div class="val-slide">
+                <div class="val-card">
+                    <span class="step-tag">HEALTH TECH</span>
+                    <h2>Rehab <br><span>Centers.</span></h2>
+                    <p>Building platforms for international healthcare. Technology that doesn't just work, but helps save lives.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Desktop Vibe */
+    .story-validation {
+        height: 350vh; /* Length of scroll */
+        background: #fff;
+        position: relative;
+    }
+
+    .sticky-wrapper {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+
+    .ghost-container {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        z-index: 1;
+    }
+
+    #ghost-text {
+        font-size: 20vw;
+        font-weight: 900;
+        color: rgb(0, 0, 0); /* Very light blue ghost text */
+        letter-spacing: -10px;
+        white-space: nowrap;
+    }
+
+    .horizontal-scroll {
+        display: flex;
+        width: 300vw;
+        z-index: 2;
+        will-change: transform;
+    }
+
+    .val-slide {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10%;
+    }
+
+    .val-card {
+        background: #fff;
+        border: 1px solid #eee;
+        padding: 60px;
+        border-radius: 40px;
+        border: 1.5px solid  #0070f3;
+        max-width: 600px;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.03);
+    }
+
+    .val-card h2 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1; }
+    .val-card h2 span { color: #0070f3; }
+    .val-card p { font-size: 1.1rem; color: #555; margin-top: 20px; line-height: 1.7; }
+
+    /* --- MOBILE RESPONSIVE (THE FIX) --- */
+    @media (max-width: 850px) {
+        .story-validation { height: auto !important; }
+        .sticky-wrapper { position: relative !important; height: auto !important; }
+        .horizontal-scroll { 
+            flex-direction: column !important; 
+            width: 100% !important; 
+            transform: none !important;
+        }
+        .val-slide { 
+            width: 100% !important; 
+            height: auto !important; 
+            padding: 50px 20px !important;
+        }
+        .val-card { padding: 30px; border-radius: 25px; }
+        #ghost-text { font-size: 30vw; top: 10%; }
+        .ghost-container { top: 50px; }
+    }
+</style>
+
+<script>
+    // Desktop only Horizontal Scroll
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth > 850) {
+            const trigger = document.getElementById('horizontal-trigger');
+            const content = document.getElementById('scroll-content');
+            const ghost = document.getElementById('ghost-text');
+            
+            const scrollPos = window.pageYOffset;
+            const offsetTop = trigger.offsetTop;
+            const triggerHeight = trigger.offsetHeight;
+            
+            if (scrollPos >= offsetTop && scrollPos <= (offsetTop + triggerHeight - window.innerHeight)) {
+                const progress = (scrollPos - offsetTop) / (triggerHeight - window.innerHeight);
+                
+                // Move Content
+                const moveX = progress * (content.offsetWidth - window.innerWidth);
+                content.style.transform = `translateX(-${moveX}px)`;
+                
+                // Move Ghost Text slightly slower for parallax
+                ghost.style.transform = `translateX(${moveX * 0.2}px)`;
+            }
+        }
+    });
+</script>
+<!--lllllllllllllllllllllllllllllllllll-->
+
+<section class="final-reveal-section" id="storyEnd">
+    <div class="content-box">
+        <h2 class="typewriter-heading" id="typewriterText"></h2>
+        
+        <div class="cta-space">
+            <div class="elastic-wrapper" id="elasticWrapper">
+                <a href="#start" class="elastic-btn" id="elasticBtn">
+                    <span class="btn-txt">LET'S CRAFT</span>
+                    <div class="btn-glow"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .final-reveal-section {
+        height: 100vh;
+        width: 100%;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .content-box {
+        text-align: center;
+        width: 100%;
+        z-index: 10;
+    }
+
+    /* TYPEWRITER STYLE */
+    .typewriter-heading {
+        font-size: clamp(2.5rem, 10vw, 8rem);
+        font-weight: 900;
+        color: #111;
+        letter-spacing: -4px;
+        min-height: 1.2em; /* Prevents layout jump */
+        margin-bottom: 40px;
+    }
+
+    .typewriter-heading span {
+        color: #0070f3; /* Your Theme Blue */
+    }
+
+    /* ELASTIC BUTTON WRAPPER */
+    .cta-space {
+        height: 200px; /* Space for the button to move */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .elastic-wrapper {
+        position: relative;
+        will-change: transform;
+    }
+
+    .elastic-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 25px 60px;
+        background: #000;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 800;
+        border-radius: 100px;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        overflow: hidden;
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .btn-txt { position: relative; z-index: 2; }
+
+    .btn-glow {
+        position: absolute;
+        width: 100px; height: 100px;
+        background: radial-gradient(circle, rgba(0, 112, 243, 0.8) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+    }
+
+    .elastic-btn:hover .btn-glow { opacity: 1; }
+    .elastic-btn:hover { background: #111; box-shadow: 0 20px 50px rgba(0, 112, 243, 0.4); }
+
+    /* MOBILE RESPONSIVE */
+    @media (max-width: 768px) {
+        .typewriter-heading { font-size: 3.5rem; letter-spacing: -1px; }
+        .elastic-wrapper { transform: none !important; } /* Disable chase on mobile */
+        .elastic-btn { padding: 20px 40px; width: 85vw; }
+    }
+</style>
+
+<script>
+    // 1. TYPEWRITER LOGIC
+    const textElement = document.getElementById('typewriterText');
+    const fullText = "THE FUTURE IS CODECRAFTE."; // Heading content
+    let index = 0;
+    let hasStarted = false;
+
+    function typeWriter() {
+        if (index < fullText.length) {
+            textElement.innerHTML += fullText.charAt(index);
+            index++;
+            setTimeout(typeWriter, 100); // Speed of typing
+        }
+    }
+
+    // Trigger typing when section is visible
+    const observers = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !hasStarted) {
+            typeWriter();
+            hasStarted = true;
+        }
+    }, { threshold: 0.5 });
+    observers.observe(document.getElementById('storyEnd'));
+
+    // 2. ELASTIC MOUSE CHASE LOGIC
+    const wrapper = document.getElementById('elasticWrapper');
+    const btn = document.getElementById('elasticBtn');
+
+    if (window.innerWidth > 768) {
+        window.addEventListener('mousemove', (e) => {
+            const rect = wrapper.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            const deltaX = e.clientX - centerX;
+            const deltaY = e.clientY - centerY;
+
+            // Distance check - only chase if mouse is close (e.g., 400px)
+            const distance = Math.hypot(deltaX, deltaY);
+            
+            if (distance < 400) {
+                // Elastic effect: move wrapper towards mouse but with limit
+                const x = deltaX * 0.4; 
+                const y = deltaY * 0.4;
+                wrapper.style.transform = `translate(${x}px, ${y}px)`;
+                btn.style.transform = `scale(1.1)`;
+            } else {
+                // Return to center with bounce feel (CSS handles smooth transition)
+                wrapper.style.transition = "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)";
+                wrapper.style.transform = `translate(0, 0)`;
+                btn.style.transform = `scale(1)`;
+            }
+        });
+
+        // Glowing effect inside button
+        btn.addEventListener('mousemove', (e) => {
+            const glow = btn.querySelector('.btn-glow');
+            const rect = btn.getBoundingClientRect();
+            glow.style.left = `${e.clientX - rect.left - 50}px`;
+            glow.style.top = `${e.clientY - rect.top - 50}px`;
+            glow.style.opacity = "1";
+        });
+    }
+</script>
+</body>
+</html>

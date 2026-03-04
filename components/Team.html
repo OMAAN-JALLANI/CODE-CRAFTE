@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Team | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --accent: #0070f3;
+            --glass: rgba(255, 255, 255, 0.85);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--white); 
+            font-family: 'Space Grotesk', sans-serif; 
+            color: var(--black);
+            overflow-x: hidden;
+            padding-bottom: 100px;
+        }
+
+        /* --- THE PAGALPAN HERO SECTION --- */
+        .team-hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0 5%;
+        }
+
+        /* Moving Background Grid (Subtle) */
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+        @keyframes gridMove {
+            from { background-position: 0 0; }
+            to { background-position: 50px 50px; }
+        }
+
+        .hero-tag {
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--accent);
+            margin-bottom: 20px; display: block;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        /* BIG REVEAL HEADING */
+        .main-title {
+            font-size: clamp(3.5rem, 15vw, 10rem);
+            line-height: 0.8; font-weight: 700;
+            text-transform: uppercase; letter-spacing: -5px;
+            position: relative;
+            user-select: none;
+        }
+
+        /* Layered Text Effect */
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--black);
+            position: absolute; top: 0; left: 0; z-index: 1;
+        }
+
+        .text-fill {
+            background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJieHhqZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4ZzR4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif');
+            background-size: cover;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            position: relative; z-index: 2;
+            transition: 0.5s ease;
+        }
+
+        .sub-heading {
+            margin-top: 40px; font-size: 1.2rem; max-width: 500px;
+            color: #555; line-height: 1.4;
+            opacity: 0; animation: fadeInUp 1s ease 0.5s forwards;
+        }
+
+        /* --- FLOATING MOUSE OBJECTS --- */
+        .float-icon {
+            position: absolute; pointer-events: none;
+            color: var(--accent); opacity: 0.3; z-index: 0;
+            transition: transform 0.1s ease-out;
+        }
+
+        /* --- BOTTOM NAV (AS PER IMAGE) --- */
+        .nav-container {
+            position: fixed; bottom: 30px; left: 50%;
+            transform: translateX(-50%); z-index: 1000;
+            width: 90%; max-width: 500px;
+        }
+        .nav-bar {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 40px;
+            display: flex; justify-content: space-around;
+            padding: 12px 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            text-decoration: none; color: #777;
+            display: flex; flex-direction: column; align-items: center;
+            gap: 4px; font-size: 0.7rem; font-weight: 700; transition: 0.3s;
+        }
+        .nav-link i { width: 22px; height: 22px; }
+        .nav-link.active { color: var(--black); }
+        .nav-link:hover { color: var(--accent); transform: translateY(-5px); }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            .main-title { letter-spacing: -2px; }
+            .sub-heading { font-size: 1rem; padding: 0 10px; }
+            .bg-grid { background-size: 30px 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <i data-lucide="code-2" class="float-icon" style="top: 20%; left: 15%;"></i>
+    <i data-lucide="cpu" class="float-icon" style="top: 70%; left: 10%;"></i>
+    <i data-lucide="zap" class="float-icon" style="top: 30%; right: 15%;"></i>
+    <i data-lucide="layers" class="float-icon" style="top: 80%; right: 10%;"></i>
+
+    <section class="team-hero">
+        <span class="hero-tag">Digital Wizards</span>
+        
+        <div class="main-title">
+            <div class="text-outline">The Architects</div>
+            <div class="text-fill">The Architects</div>
+        </div>
+        <div class="main-title" style="margin-top: -10px;">
+            <div class="text-outline">Of Chaos</div>
+            <div class="text-fill">Of Chaos</div>
+        </div>
+
+        <p class="sub-heading">
+            Meet the crazy ones who think they can change the world—and actually do it with code and design.
+        </p>
+    </section>
+
+    <div class="nav-container">
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-link">
+                <i data-lucide="home"></i>
+                <span>Home</span>
+            </a>
+            <a href="team.html" class="nav-link active">
+                <i data-lucide="users"></i>
+                <span>Our Team</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i data-lucide="book-open"></i>
+                <span>Our Story</span>
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i data-lucide="mail"></i>
+                <span>Contact</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i data-lucide="user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // --- MAGNETIC MOUSE EFFECT FOR FLOATING ICONS ---
+        document.addEventListener('mousemove', (e) => {
+            const icons = document.querySelectorAll('.float-icon');
+            const x = (window.innerWidth / 2 - e.clientX) / 25;
+            const y = (window.innerHeight / 2 - e.clientY) / 25;
+
+            icons.forEach(icon => {
+                icon.style.transform = `translate(${x}px, ${y}px) rotate(${x}deg)`;
+            });
+
+            // Heading Fill Effect Move
+            const fill = document.querySelectorAll('.text-fill');
+            fill.forEach(t => {
+                t.style.backgroundPosition = `${e.clientX / 10}px ${e.clientY / 10}px`;
+            });
+        });
+    </script>
+
+
+<!--gggggggggggggggggg-->
+<section class="team-grid-section">
+    <div class="container">
+        <div class="grid-header">
+            <span class="tagline">THE CRAZY ONES</span>
+            <h2 class="title">Core Architects</h2>
+        </div>
+
+        <div class="architects-grid">
+            
+            <div class="member-card" data-tilt>
+                <div class="card-inner">
+                    <div class="image-wrapper">
+                        <img src="https://i.pravatar.cc/500?u=omaan" alt="Omaan Jallane">
+                        <div class="glitch-box">WEB_GOD</div>
+                    </div>
+                    <div class="member-detail">
+                        <h3>Omaan Jallane</h3>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member-card" data-tilt>
+                <div class="card-inner">
+                    <div class="image-wrapper">
+                        <img src="https://i.pravatar.cc/500?u=ashir" alt="Ashir Muneer">
+                        <div class="glitch-box">SMM_PPT_PRO</div>
+                    </div>
+                    <div class="member-detail">
+                        <h3>Ashir Muneer</h3>
+                        <p>SMM + PPT Specialist</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member-card" data-tilt>
+                <div class="card-inner">
+                    <div class="image-wrapper">
+                        <img src="https://i.pravatar.cc/500?u=moueen" alt="Moueen Din">
+                        <div class="glitch-box">CRM_WIZARD</div>
+                    </div>
+                    <div class="member-detail">
+                        <h3>Moueen Din</h3>
+                        <p>CRM/PMS Specialist</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member-card" data-tilt>
+                <div class="card-inner">
+                    <div class="image-wrapper">
+                        <img src="https://i.pravatar.cc/500?u=zain" alt="Zain Tariq">
+                        <div class="glitch-box">TIKTOK_KING</div>
+                    </div>
+                    <div class="member-detail">
+                        <h3>Zain Tariq</h3>
+                        <p>TikTok Specialist</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="member-card" data-tilt>
+                <div class="card-inner">
+                    <div class="image-wrapper">
+                        <img src="https://i.pravatar.cc/500?u=talha" alt="Talha Saeed">
+                        <div class="glitch-box">VISUAL_ARTIST</div>
+                    </div>
+                    <div class="member-detail">
+                        <h3>Talha Saeed</h3>
+                        <p>Graphic Designer</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    /* CSS for Section 2 */
+    .team-grid-section {
+        padding: 100px 5%;
+        background: #ffffff;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .grid-header { text-align: center; margin-bottom: 60px; }
+    .tagline { font-size: 0.75rem; font-weight: 700; letter-spacing: 5px; color: #0070f3; }
+    .title { font-size: 3rem; text-transform: uppercase; margin-top: 10px; font-weight: 700; }
+
+    /* The Responsive Grid */
+    .architects-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Desktop: 3 Columns */
+        gap: 30px;
+    }
+
+    /* Member Card Styling */
+    .member-card { perspective: 1000px; }
+    .card-inner {
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 25px;
+        padding: 15px;
+        transition: 0.4s ease;
+        transform-style: preserve-3d;
+    }
+
+    .image-wrapper {
+        width: 100%;
+        height: 350px;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .image-wrapper img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%);
+        transition: 0.6s ease;
+    }
+
+    .glitch-box {
+        position: absolute; inset: 0;
+        background: rgba(0, 112, 243, 0.85);
+        color: white; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+        opacity: 0; transition: 0.3s ease;
+        font-size: 1rem; letter-spacing: 2px;
+    }
+
+    /* Hover Effects */
+    .member-card:hover .card-inner { border-color: #000; box-shadow: 0 25px 50px rgba(0,0,0,0.08); }
+    .member-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
+    .member-card:hover .glitch-box { opacity: 1; }
+
+    .member-detail { margin-top: 20px; padding: 0 5px; }
+    .member-detail h3 { font-size: 1.3rem; text-transform: uppercase; letter-spacing: -0.5px; }
+    .member-detail p { color: #888; font-size: 0.85rem; margin-top: 5px; font-weight: 500; }
+
+    /* --- MOBILE 2-COLUMN GRID (AS REQUESTED) --- */
+    @media (max-width: 900px) {
+        .architects-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .image-wrapper { height: 220px; }
+        .member-detail h3 { font-size: 1rem; }
+        .member-detail p { font-size: 0.75rem; }
+        .title { font-size: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+        .architects-grid { grid-template-columns: repeat(2, 1fr); } /* Stays 2 col on small mobile */
+        .image-wrapper { height: 180px; }
+    }
+</style>
+
+<script>
+    // 3D Tilt JavaScript for Section 2
+    const allCards = document.querySelectorAll('.member-card');
+    
+    allCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 12;
+            const rotateY = (centerX - x) / 12;
+            
+            card.querySelector('.card-inner').style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.querySelector('.card-inner').style.transform = `rotateX(0deg) rotateY(0deg)`;
+        });
+    });
+</script>
+
+<!--sssssssssssssss-->
+
+<section class="tech-arsenal">
+    <div class="arsenal-header">
+        <span class="tag">OUR STACK</span>
+        <h2>The Tools We <span>Weaponize</span></h2>
+    </div>
+
+    <div class="dock-container">
+        <div class="dock">
+            <div class="dock-item" data-name="React">
+                <div class="icon-circle">
+                    <i data-lucide="code-2"></i>
+                </div>
+            </div>
+            <div class="dock-item" data-name="Figma">
+                <div class="icon-circle">
+                    <i data-lucide="framer"></i>
+                </div>
+            </div>
+            <div class="dock-item" data-name="Meta Ads">
+                <div class="icon-circle">
+                    <i data-lucide="megaphone"></i>
+                </div>
+            </div>
+            <div class="dock-item" data-name="TikTok">
+                <div class="icon-circle">
+                    <i data-lucide="play"></i>
+                </div>
+            </div>
+            <div class="dock-item" data-name="Python">
+                <div class="icon-circle">
+                    <i data-lucide="terminal"></i>
+                </div>
+            </div>
+            <div class="dock-item" data-name="Zapier">
+                <div class="icon-circle">
+                    <i data-lucide="zap"></i>
+                </div>
+            </div>
+            <div class="dock-item" data-name="Node.js">
+                <div class="icon-circle">
+                    <i data-lucide="server"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .tech-arsenal {
+        padding: 100px 5%;
+        background: #fff;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .arsenal-header { margin-bottom: 80px; }
+    .arsenal-header .tag { font-size: 0.7rem; font-weight: 700; color: #0070f3; letter-spacing: 5px; }
+    .arsenal-header h2 { font-size: 3rem; text-transform: uppercase; margin-top: 10px; }
+    .arsenal-header h2 span { color: #0070f3; }
+
+    /* DOCK STYLING */
+    .dock-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 40px 0;
+    }
+
+    .dock {
+        display: flex;
+        gap: 15px;
+        padding: 15px 25px;
+        background: rgba(245, 245, 247, 0.8);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: 30px;
+        align-items: flex-end;
+        transition: 0.3s ease;
+    }
+
+    .dock-item {
+        position: relative;
+        transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        cursor: pointer;
+    }
+
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+        transition: inherit;
+    }
+
+    .icon-circle i {
+        width: 28px;
+        height: 28px;
+        color: #333;
+        transition: 0.3s;
+    }
+
+    /* TOOLTIP NAME */
+    .dock-item::before {
+        content: attr(data-name);
+        position: absolute;
+        top: -45px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: #000;
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 8px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        opacity: 0;
+        transition: 0.3s;
+        pointer-events: none;
+    }
+
+    /* HOVER EFFECT (The Pagalpan) */
+    .dock-item:hover {
+        transform: translateY(-20px) scale(1.4);
+        margin: 0 15px;
+    }
+
+    .dock-item:hover .icon-circle {
+        background: #0070f3;
+        box-shadow: 0 20px 40px rgba(0,112,243,0.3);
+    }
+
+    .dock-item:hover i {
+        color: #fff;
+    }
+
+    .dock-item:hover::before {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* MOBILE: Grid switch for better UX */
+    @media (max-width: 768px) {
+        .dock {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .dock-item:hover {
+            transform: scale(1.2);
+            margin: 0;
+        }
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+        }
+    }
+</style>
+
+<script>
+    // Lucide icons ko load karne ke liye
+    lucide.createIcons();
+</script>
+<!--ppppppppppppppp-->
+
+<section class="power-levels-section">
+    <div class="levels-header">
+        <span class="tag">OUR CAPABILITIES</span>
+        <h2>Mastery <span>Matrix</span></h2>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-num" data-target="98">0</div>
+            <div class="stat-info">
+                <h3>Web Architecture</h3>
+                <p>Clean, scalable, and bulletproof code.</p>
+            </div>
+            <div class="progress-bar-wrap">
+                <div class="progress-line" style="width: 98%;"></div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-num" data-target="100">0</div>
+            <div class="stat-info">
+                <h3>Meta Ads Scaling</h3>
+                <p>Turning ad spend into pure profit.</p>
+            </div>
+            <div class="progress-bar-wrap">
+                <div class="progress-line" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-num" data-target="95">0</div>
+            <div class="stat-info">
+                <h3>UI/UX Psychology</h3>
+                <p>Designs that force users to take action.</p>
+            </div>
+            <div class="progress-bar-wrap">
+                <div class="progress-line" style="width: 95%;"></div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-num" data-target="92">0</div>
+            <div class="stat-info">
+                <h3>System Automation</h3>
+                <p>Making businesses run on autopilot.</p>
+            </div>
+            <div class="progress-bar-wrap">
+                <div class="progress-line" style="width: 92%;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .power-levels-section {
+        padding: 100px 5%;
+        background: #ffffff;
+        font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .levels-header { text-align: center; margin-bottom: 80px; }
+    .levels-header .tag { font-size: 11px; font-weight: 700; color: #999; letter-spacing: 5px; text-transform: uppercase; }
+    .levels-header h2 { font-size: 3rem; font-weight: 800; color: #111; margin-top: 10px; }
+    .levels-header h2 span { color: #0070f3; }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Desktop 2x2 */
+        gap: 40px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .stat-card {
+        padding: 40px;
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 30px;
+        transition: 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card:hover {
+        border-color: #000;
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    }
+
+    .stat-num {
+        font-size: 4rem;
+        font-weight: 800;
+        color: #111;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .stat-num::after { content: '%'; font-size: 1.5rem; margin-left: 5px; color: #0070f3; }
+
+    .stat-info h3 { font-size: 1.4rem; text-transform: uppercase; margin-bottom: 10px; }
+    .stat-info p { color: #666; font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px; }
+
+    /* Progress Bar */
+    .progress-bar-wrap {
+        width: 100%;
+        height: 4px;
+        background: #f0f0f0;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .progress-line {
+        height: 100%;
+        background: #0070f3;
+        width: 0; /* Animation handle */
+        transition: 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    /* --- MOBILE RESPONSIVE --- */
+    @media (max-width: 768px) {
+        .stats-grid { grid-template-columns: 1fr; } /* Stack vertically on mobile */
+        .stat-card { padding: 30px; }
+        .stat-num { font-size: 3rem; }
+        .levels-header h2 { font-size: 2rem; }
+    }
+</style>
+
+<script>
+    // Intersection Observer for Animation
+    const observerOptions = { threshold: 0.5 };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const card = entry.target;
+                const numElement = card.querySelector('.stat-num');
+                const target = parseInt(numElement.getAttribute('data-target'));
+                const progressLine = card.querySelector('.progress-line');
+                
+                // 1. Animate Number
+                let count = 0;
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16);
+                
+                const updateCount = () => {
+                    if (count < target) {
+                        count += increment;
+                        numElement.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 16);
+                    } else {
+                        numElement.innerText = target;
+                    }
+                };
+                updateCount();
+
+                // 2. Animate Progress Bar
+                progressLine.style.width = target + '%';
+                
+                observer.unobserve(card); // Only animate once
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.stat-card').forEach(card => observer.observe(card));
+</script>
+</body>
+
+</html>
