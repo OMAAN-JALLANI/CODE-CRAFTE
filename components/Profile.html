@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction | CodeCrafte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- THE CENTER TEXT --- */
+        .main-text {
+            text-align: center;
+            z-index: 50; /* Strips ke beech mein focus */
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            pointer-events: none;
+        }
+
+        .main-text h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 900;
+            color: #111;
+            line-height: 1;
+            margin-bottom: 15px;
+        }
+
+        .main-text p {
+            color: #555;
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* --- THE INFINITE STRIPS --- */
+        .strip-wrapper {
+            position: absolute;
+            width: 300vw; /* Super wide for safe rotation */
+            height: 60px;
+            left: -100vw;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            pointer-events: none;
+        }
+
+        .marquee {
+            display: flex;
+            animation: scroll 25s linear infinite;
+        }
+
+        .marquee span {
+            font-size: 1.3rem;
+            font-weight: 900;
+            padding: 0 30px;
+            text-transform: uppercase;
+        }
+
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-33.33%); }
+        }
+
+        /* Colors & Exact Angles (Image Match) */
+        .yellow { background: #ffcc00; color: #000; z-index: 60; }
+        .black { background: #000; color: #fff; z-index: 40; }
+
+        /* Random Rotations like the image */
+        .pos-1 { top: 10%; transform: rotate(-6deg); }
+        .pos-2 { top: 35%; transform: rotate(12deg); animation-duration: 30s; }
+        .pos-3 { bottom: 30%; transform: rotate(-4deg); animation-duration: 20s; }
+        .pos-4 { bottom: 12%; transform: rotate(5deg); }
+        .pos-5 { top: 50%; transform: rotate(-15deg); height: 50px; opacity: 0.8; }
+
+        /* Mobile Fix */
+        @media (max-width: 600px) {
+            .strip-wrapper { height: 40px; }
+            .marquee span { font-size: 1rem; }
+            .main-text h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="strip-wrapper yellow pos-1">
+        <div class="marquee">
+            <span>🚧 SITE UNDER CONSTRUCTION • DO NOT CROSS • ENGINEERING IN PROGRESS • </span>
+            <span>🚧 SITE UNDER CONSTRUCTION • DO NOT CROSS • ENGINEERING IN PROGRESS • </span>
+            <span>🚧 SITE UNDER CONSTRUCTION • DO NOT CROSS • ENGINEERING IN PROGRESS • </span>
+        </div>
+    </div>
+
+    <div class="strip-wrapper black pos-2">
+        <div class="marquee">
+            <span>POLISHING PIXELS • CODECRAFTE V2.0 • COMING SOON • </span>
+            <span>POLISHING PIXELS • CODECRAFTE V2.0 • COMING SOON • </span>
+            <span>POLISHING PIXELS • CODECRAFTE V2.0 • COMING SOON • </span>
+        </div>
+    </div>
+
+    <div class="strip-wrapper black pos-3">
+        <div class="marquee">
+            <span>CODECRAFTE V2.0 • DO NOT CROSS • SITE UNDER CONSTRUCTION • </span>
+            <span>CODECRAFTE V2.0 • DO NOT CROSS • SITE UNDER CONSTRUCTION • </span>
+            <span>CODECRAFTE V2.0 • DO NOT CROSS • SITE UNDER CONSTRUCTION • </span>
+        </div>
+    </div>
+
+    <div class="strip-wrapper yellow pos-4">
+        <div class="marquee">
+            <span>🚧 ENGINEERING IN PROGRESS • POLISHING PIXELS • STAY TUNED • </span>
+            <span>🚧 ENGINEERING IN PROGRESS • POLISHING PIXELS • STAY TUNED • </span>
+            <span>🚧 ENGINEERING IN PROGRESS • POLISHING PIXELS • STAY TUNED • </span>
+        </div>
+    </div>
+
+    <div class="strip-wrapper black pos-5">
+        <div class="marquee">
+            <span>COMING SOON • CODECRAFTE • COMING SOON • CODECRAFTE • </span>
+            <span>COMING SOON • CODECRAFTE • COMING SOON • CODECRAFTE • </span>
+        </div>
+    </div>
+
+    <div class="main-text">
+        <div style="font-size: 3rem; margin-bottom: 10px;">🚧</div>
+        <h1>Building <br>Something Cool.</h1>
+        <p>We are currently polishing the pixels. CodeCrafte's new version will be live soon. Until then, have a little patience!</p>
+        <a href="../index.html" ><p style="color: #ffcc00;">GO HOME?</p></a>
+        
+    </div>
+
+</body>
+</html>

@@ -249,7 +249,7 @@
         <div class="nav-icon-wrapper"><i data-lucide="mail"></i></div>
         <span>Contact</span>
     </a>
-    <a href="#login" class="nav-item profile-nav">
+    <a href="./components/Profile.html" class="nav-item profile-nav">
         <div class="nav-icon-wrapper"><i data-lucide="user"></i></div>
         <span>Profile</span>
     </a>
@@ -755,54 +755,66 @@ document.addEventListener('touchmove', (e) => {
         </div>
 
         <div class="video-wrapper" id="video-area">
-            <video autoplay muted loop playsinline controls class="showcase-video">
+           <a href="./components/Portfolio.html"> <video autoplay muted loop playsinline controls class="showcase-video">
                 <source src="./images/HSKA.webm" type="video/webm">
                 Your browser does not support the video tag.
-            </video>
+            </video></a>
 
             <div id="cursor-btn" class="magnetic-btn">
-                <span>VIEW<br>PROJECT</span>
+                <span >CLICK TO VIEW<br>PROJECT</span>
             </div>
         </div>
         
         <div id="btn-target"></div>
     </div>
-</section><script>
-    const videoArea = document.getElementById('video-area');
+</section>
+
+<script>
+const videoArea = document.getElementById('video-area');
 const cursorBtn = document.getElementById('cursor-btn');
-const btnTarget = document.getElementById('btn-target');
+
+let mouseX = 0, mouseY = 0; // Mouse ki position
+let btnX = 0, btnY = 0;     // Button ki position
 
 document.addEventListener('mousemove', (e) => {
-    const rect = videoArea.getBoundingClientRect();
-    
-    // Check agar mouse video ke andar hai
-    if (e.clientX >= rect.left && e.clientX <= rect.right && 
-        e.clientY >= rect.top && e.clientY <= rect.bottom) {
-        
-        cursorBtn.style.position = 'fixed';
-        cursorBtn.style.opacity = '1';
-        // Mouse follow logic
-        cursorBtn.style.left = `${e.clientX - 50}px`;
-        cursorBtn.style.top = `${e.clientY - 50}px`;
-    } else {
-        // Video se bahar nikalte hi target position par chala jaye
-        const targetRect = btnTarget.getBoundingClientRect();
-        cursorBtn.style.position = 'absolute';
-        cursorBtn.style.left = '50%';
-        cursorBtn.style.top = `${targetRect.top + window.scrollY}px`;
-        cursorBtn.style.transform = 'translateX(-50%)';
-    }
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
 
-// Scroll logic: Jab scroll karein to button niche beth jaye
-window.addEventListener('scroll', () => {
+function moveButton() {
     const rect = videoArea.getBoundingClientRect();
-    if (rect.bottom < window.innerHeight / 2) {
-        cursorBtn.style.opacity = '0.5'; // Thoda light ho jaye scroll par
-    } else {
+    
+    // Check agar mouse video area ke andar hai
+    if (mouseX >= rect.left && mouseX <= rect.right && 
+        mouseY >= rect.top && mouseY <= rect.bottom) {
+        
+        // --- SMOOTHNESS LOGIC (Lerp) ---
+        // 0.1 ka matlab hai 10% movement har frame mein, jo lag paida karti hai (Premium feel)
+        btnX += (mouseX - btnX) * 0.1;
+        btnY += (mouseY - btnY) * 0.1;
+        
         cursorBtn.style.opacity = '1';
+        cursorBtn.style.transform = 'scale(1)';
+    } else {
+        // Video se bahar nikalte hi gayab ya chota ho jaye
+        btnX += (mouseX - btnX) * 0.1;
+        btnY += (mouseY - btnY) * 0.1;
+        cursorBtn.style.transform = 'scale(0)';
+        cursorBtn.style.opacity = '0';
     }
-});
+
+    // Button ko center karne ke liye width/2 (50px) minus kiya
+    cursorBtn.style.left = `${btnX - 50}px`;
+    cursorBtn.style.top = `${btnY - 50}px`;
+
+    requestAnimationFrame(moveButton);
+}
+
+// Animation loop start karein
+moveButton();
+
+// Lucide icons render karne ke liye
+if(window.lucide) lucide.createIcons();
 </script>
 
 
@@ -979,39 +991,162 @@ window.addEventListener('scroll', () => {
 
 <!--CONTACTTT-->
   
+ <style>
+/* 1. Global Animation for Border */
+@keyframes borderRotate {
+    100% { transform: rotate(360deg); }
+}
+
+.direct-contact-section {
+    padding: 120px 5%;
+    background: #000; /* Deep Black for max shine */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 2. The Container with Moving Border */
+.contact-flex-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    padding: 3px; /* Border ki thickness */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Moving Border Background */
+.contact-flex-container::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: conic-gradient(transparent, transparent, transparent, #0070f3);
+    animation: borderRotate 4s linear infinite;
+}
+
+/* Inner Box (Black Card) */
+.contact-content {
+    position: relative;
+    width: 100%;
+    background: #080808;
+    border-radius: 22px;
+    padding: 60px 40px;
+    z-index: 2;
+    text-align: center;
+}
+
+/* 3. Shining Sweep Effect */
+.contact-content::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    animation: sweep 5s infinite;
+}
+
+@keyframes sweep {
+    0% { left: -100%; }
+    30% { left: 100%; }
+    100% { left: 100%; }
+}
+
+/* Text Styles */
+.section-title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -3px;
+    line-height: 1;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.section-desc {
+    color: #555;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+/* Interactive Buttons */
+.primary-btn {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 18px 45px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+.primary-btn:hover {
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+    transform: translateY(-3px);
+}
+
+.secondary-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.text-link {
+    color: #444;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+}
+</style>
+
 <section class="direct-contact-section">
     <div class="contact-flex-container">
-        
-        <div class="contact-visual">
-            <img src="./images/CTA.png" alt="CodeCrafte Illustration" class="floating-img">
-            <div class="visual-glow"></div>
-        </div>
-
         <div class="contact-content">
-            <h2 class="section-title">Get in touch</h2>
-            <p class="section-desc">
-                Thanks for your interest in CodeCrafte. Choose from the options below and we'll connect you with the right person.
+            <h2 class="section-title" onclick="popColor(this)">GET IN <br> TOUCH.</h2>
+            <p class="section-desc" onclick="popColor(this)">
+                Minimalism meets engineering. Click us to see the magic.
             </p>
             
             <div class="action-buttons">
                 <a href="https://wa.me/yournumber" class="primary-btn">
-                    Send a message <i data-lucide="send"></i>
+                    MESSAGE ON WHATSAPP
                 </a>
                 
                 <div class="secondary-links">
-                    <a href="mailto:codecrafte07@gmail.com" class="text-link">
-                        <i data-lucide="mail"></i> Email Us
-                    </a>
-                    <a href="#" class="text-link">
-                        <i data-lucide="calendar"></i> Book a Call
-                    </a>
+                    <a class="text-link" onclick="popColor(this)">EMAIL</a>
+                    <a class="text-link" onclick="popColor(this)">BOOK CALL</a>
                 </div>
             </div>
         </div>
-
     </div>
 </section>
-
+<script>
+function popColor(el) {
+    // Har click par bilkul naya bright color
+    const hue = Math.floor(Math.random() * 360);
+    const newColor = `hsl(${hue}, 100%, 65%)`;
+    
+    el.style.color = newColor;
+    
+    // Halka sa scale effect bhi de dete hain click par
+    el.style.transform = "scale(1.05)";
+    setTimeout(() => {
+        el.style.transform = "scale(1)";
+    }, 150);
+}
+</script>
 
  <!--footerrr-->
 
